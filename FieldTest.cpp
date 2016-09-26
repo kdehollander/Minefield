@@ -15,21 +15,6 @@ class FieldTest : public ::testing::Test
 		virtual void TearDown(){}
 };
 
-TEST(FieldTest, checkInBounds)
-{
-	Field minefield;
-
-	ASSERT_TRUE(minefield.inBounds(5, 5));
-	ASSERT_FALSE(minefield.inBounds(12, 5));
-	ASSERT_FALSE(minefield.inBounds(5, 12));
-	ASSERT_TRUE(minefield.inBounds(0, 0));
-	ASSERT_TRUE(minefield.inBounds(5, 0));
-	ASSERT_TRUE(minefield.inBounds(0, 5));
-	ASSERT_FALSE(minefield.inBounds(-1, 5));
-	ASSERT_FALSE(minefield.inBounds(5, -1));
-	
-}
-
 TEST(FieldTest, checkInBoundsResized)
 {
 	Field minefield(20);
@@ -53,31 +38,31 @@ TEST(FieldTest, placeMineInBounds)
 	ASSERT_EQ( MINE_HIDDEN, minefield.get(4,5) );
 
 	minefield.placeMine(0, 5);
-	ASSERT_EQ(MINE_HIDDEN, minefile.get(0,5));
+	ASSERT_EQ(MINE_HIDDEN, minefield.get(0,5));
 
 	minefield.placeMine(5, 0);
-	ASSERT_EQ(MINE_HIDDEN, minefile.get(5,0));
+	ASSERT_EQ(MINE_HIDDEN, minefield.get(5,0));
 
 	minefield.placeMine(0, 0);
-	ASSERT_EQ(MINE_HIDDEN, minefile.get(0,0));
+	ASSERT_EQ(MINE_HIDDEN, minefield.get(0,0));
 
 	minefield.placeMine(12, 5);
-	ASSERT_ANY_THROW(minefile.get(12,5));
+	ASSERT_ANY_THROW(minefield.get(12,5));
 
 	minefield.placeMine(5, 12);
-	ASSERT_ANY_THROW(minefile.get(5,12));
+	ASSERT_ANY_THROW(minefield.get(5,12));
 
 	minefield.placeMine(12, 12);
-	ASSERT_ANY_THROW(minefile.get(12,12));
+	ASSERT_ANY_THROW(minefield.get(12,12));
 
 	minefield.placeMine(-1, 5);
-	ASSERT_ANY_THROW(minefile.get(-1,5));
+	ASSERT_ANY_THROW(minefield.get(-1,5));
 
 	minefield.placeMine(5, -1);
-	ASSERT_ANY_THROW(minefile.get(5,-1));
+	ASSERT_ANY_THROW(minefield.get(5,-1));
 
 	minefield.placeMine(-1, -1);
-	ASSERT_ANY_THROW(minefile.get(-1,-1));
+	ASSERT_ANY_THROW(minefield.get(-1,-1));
 }
 TEST(FieldTest, checkSafe)
 {
